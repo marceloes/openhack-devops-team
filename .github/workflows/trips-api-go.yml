@@ -18,6 +18,9 @@ jobs:
       with:
         go-version: 1.16.8
 
+    - name: Restore
+      run: go get -v apis/trips/api/tripsgo
+
     - name: Build
       run: go build -v apis/trips/api/tripsgo
 
