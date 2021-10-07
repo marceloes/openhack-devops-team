@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: [ '3.1x', '5.0' ]
+        dotnet-version: [ '3.1.x', '5.0' ]
 
     steps:
     - uses: actions/checkout@v2
@@ -23,10 +23,10 @@ jobs:
         dotnet-version: ${{ matrix.dotnet-version }}
     
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore apis/poi/poi.sln
     
     - name: Build project
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore apis/poi/poi.sln
     
     - name: Test projects
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal apis/poi/poi.sln
