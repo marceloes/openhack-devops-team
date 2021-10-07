@@ -8,13 +8,13 @@ on:
     branches: [ 'main' ]
     paths:
       - "apis/user-java/**"
-      - ".github/workflows"
+      - ".github/**"
 
   pull_request:
     branches: [ 'main' ]
     paths:
       - "apis/user-java/**"
-      - ".github/workflows"
+      - ".github/**"
 
 jobs:
   build:

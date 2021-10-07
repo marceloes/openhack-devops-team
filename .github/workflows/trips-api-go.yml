@@ -5,12 +5,12 @@ on:
     branches: [ 'main' ]
     paths:
       - "apis/trips/tripsgo/**"
-      - ".github/workflows"
+      - ".github/**"
   pull_request:
     branches: [ 'main' ]
     paths:
       - "apis/trips/tripsgo/**"
-      - ".github/workflows"
+      - ".github/**"
 
 jobs:
   build:

@@ -5,12 +5,12 @@ on:
     branches: [ main ]
     paths:
       - "apis/poi/**"
-      - ".github/workflows"
+      - ".github/**"
   pull_request:
     branches: [ main ]
     paths:
       - "apis/poi/**"
-      - ".github/workflows"
+      - ".github/**"
 
 jobs:
   build:
