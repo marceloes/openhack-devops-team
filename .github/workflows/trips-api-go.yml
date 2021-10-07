@@ -16,7 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: /apis/trips/tripsgo
+        working-directory: apis/trips/tripsgo
 
     steps:
     - uses: actions/checkout@v2
