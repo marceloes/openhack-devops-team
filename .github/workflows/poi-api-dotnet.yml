@@ -1,25 +1,32 @@
-name: .NET
+name: POI-API-CI
 
 on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches: ['dev*' ]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '3.1x', '5.0' ]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
+    
+    - name: Setup dotnet core version ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: ${{ matrix.dotnet-version }}
+    
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
+    
+    - name: Build project
       run: dotnet build --no-restore
-    - name: Test
+    
+    - name: Test projects
       run: dotnet test --no-build --verbosity normal
