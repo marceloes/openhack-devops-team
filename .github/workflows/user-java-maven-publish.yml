@@ -19,7 +19,7 @@ jobs:
       APP_VERSION: "user-java default" 
     defaults:
         run:
-            working-directory: api/user-java  
+          working-directory: apis/user-java  
     runs-on: ubuntu-latest
     permissions:
       contents: read
