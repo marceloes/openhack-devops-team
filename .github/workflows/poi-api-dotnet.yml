@@ -29,4 +29,4 @@ jobs:
       run: dotnet build --no-restore apis/poi/poi.sln
     
     - name: Test projects
-      run: dotnet test --no-build --verbosity normal apis/poi/poi.sln
+      run: dotnet test --no-build --verbosity normal apis/poi/tests/UnitTests/UnitTests.csproj
