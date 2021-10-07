@@ -2,9 +2,9 @@ name: TRIPS-API-CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ 'main/apis/trips/tripsgo/**' ]
   pull_request:
-    branches: [ main ]
+    branches: [ 'main/apis/trips/tripsgo/**' ]
 
 jobs:
 
@@ -19,10 +19,10 @@ jobs:
         go-version: 1.16.8
 
     - name: Restore
-      run: go get -v apis/trips/api/tripsgo
+      run: go get 
 
     - name: Build
-      run: go build -v apis/trips/api/tripsgo
+      run: go build -v 
 
     - name: Test
-      run: go test -v api/trips/api/tripsgo
+      run: go test -v 

@@ -2,9 +2,9 @@ name: POI-API-CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ 'main/apis/poi/**' ]
   pull_request:
-    branches: [ main ]
+    branches: [ 'main/apis/poi/**' ]
 
 jobs:
   build:
