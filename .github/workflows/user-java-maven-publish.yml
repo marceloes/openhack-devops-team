@@ -6,8 +6,15 @@ name: USER-JAVA-CI
 on:
   push:
     branches: [ 'main' ]
+    paths:
+      - "apis/user-java/**"
+      - ".github/workflows"
+
   pull_request:
     branches: [ 'main' ]
+    paths:
+      - "apis/user-java/**"
+      - ".github/workflows"
 
 jobs:
   build:

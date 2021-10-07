@@ -3,17 +3,18 @@ name: TRIPS-API-CI
 on:
   push:
     branches: [ 'main' ]
-    #paths:
-    #  - "main/apis/trips/tripsgo/**"
+    paths:
+      - "apis/trips/tripsgo/**"
+      - ".github/workflows"
   pull_request:
     branches: [ 'main' ]
-    #paths:
-    #  - "main/apis/trips/tripsgo/**"
+    paths:
+      - "apis/trips/tripsgo/**"
+      - ".github/workflows"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     defaults:
       run:
         working-directory: apis/trips/tripsgo
@@ -26,8 +27,15 @@ jobs:
       with:
         go-version: 1.16.8
 
-    - name: Echo
-      run: pwd
+    - uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDS }}
+
+    - uses: Azure/get-keyvault-secrets@v1
+      with:
+        keyvault: "openhack4ue1whv5kv"
+        secrets: "SQLDBNAME, SQLPASSWORD, SQLSERVER, SQLUSER"
+      id: secretsAction
 
     - name: Restore
       run: go get 
@@ -37,3 +45,14 @@ jobs:
 
     - name: Test
       run: go test
+      env:
+        SQL_USER: ${{ steps.secretsAction.outputs.SQLUSER }} 
+        SQL_PASSWORD: ${{ steps.secretsAction.outputs.SQLPASSWORD }} 
+        SQL_SERVER: "openhack4ue1whv5sql.database.windows.net" 
+        SQL_DBNAME: "mydrivingDB" 
+        WEB_PORT: "80" 
+        WEB_SERVER_BASE_URI: "http://0.0.0.0" 
+        DOCS_URI: "http://localhost" 
+        DEBUG_LOGGING: "false" 
+        APP_VERSION: "trips default"
+
