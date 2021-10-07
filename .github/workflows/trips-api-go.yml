@@ -1,4 +1,4 @@
-name: Go
+name: TRIPS-API-CI
 
 on:
   push:
@@ -16,10 +16,10 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.17
+        go-version: 1.16.8
 
     - name: Build
-      run: go build -v ./...
+      run: go build -v apis/trips/api/tripsgo
 
     - name: Test
-      run: go test -v ./...
+      run: go test -v api/trips/api/tripsgo
