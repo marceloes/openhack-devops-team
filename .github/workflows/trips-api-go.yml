@@ -3,12 +3,12 @@ name: TRIPS-API-CI
 on:
   push:
     branches: [ 'main' ]
-    paths:
-      - "main/apis/trips/tripsgo/**"
+    #paths:
+    #  - "main/apis/trips/tripsgo/**"
   pull_request:
     branches: [ 'main' ]
-    paths:
-      - "main/apis/trips/tripsgo/**"
+    #paths:
+    #  - "main/apis/trips/tripsgo/**"
 
 jobs:
 
