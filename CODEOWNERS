@@ -33,19 +33,19 @@
 # The `docs/*` pattern will match files like
 # `docs/getting-started.md` but not further nested files like
 # `docs/build-app/troubleshooting.md`.
-docs/*  docs@example.com
+#docs/*  docs@example.com
 
 # In this example, @octocat owns any file in an apps directory
 # anywhere in your repository.
-apps/ @octocat
+#apps/ @octocat
 
 # In this example, @doctocat owns any file in the `/docs`
 # directory in the root of your repository and any of its
 # subdirectories.
-/docs/ @doctocat
+#/docs/ @doctocat
 
 # In this example, @octocat owns any file in the `/apps` 
 # directory in the root of your repository except for the `/apps/github` 
 # subdirectory, as its owners are left empty.
-/apps/ @octocat
-/apps/github 
+#/apps/ @octocat
+#/apps/github 
