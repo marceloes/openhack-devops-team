@@ -1,0 +1,37 @@
+name: deploy-container-webapp
+
+on:
+  workflow_call:
+    inputs:
+      resourcegroup:
+        required: true
+        type: string
+      webappname:
+        required: true
+        type: string
+      sourceslotname:
+        required: true
+        type: string
+      targetslotname:
+        required: true
+        type: string
+    secrets:
+      azurecreds:
+        required: true
+jobs:
+  swap:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.azurecreds }}
+
+    - name: Azure ACR build image CLI Action
+      uses: Azure/cli@1.0.4
+      with:
+        # <Azure Container Registry URI>/<ACR_repository_name>:<Revision Number> where the ACR_repository_name follows the naming convention devopsoh/<image_name>:<tag>.
+        inlineScript: 
+          az webapp deployment slot swap  -g ${{ inputs.resourcegroup }} -n ${{ inputs.webappname }} --slot ${{ inputs.sourceslotname }} --target-slot ${{ inputs.targetslotname }}
+
