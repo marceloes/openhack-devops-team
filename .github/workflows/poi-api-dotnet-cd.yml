@@ -1,0 +1,30 @@
+name: POI-API-CD
+
+on:
+  workflow_run:
+    workflows:
+      - "POI-API-CI"
+    types:
+      - "completed"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      ACRNAME: "openhack4ue1whv5acr"
+    defaults:
+      run:
+        working-directory: apis/poi/web
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+
+    - uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDS }}
+
+    - name: Azure ACR build image CLI Action
+      uses: Azure/cli@1.0.4
+      with:
+        inlineScript: 
+        # <Azure Container Registry URI>/<ACR_repository_name>:<Revision Number> where the ACR_repository_name follows the naming convention devopsoh/<image_name>:<tag>.
+          az acr build --image "devopsoh/api-poi:${{ github.run_number }}" --registry ${{ env.ACRNAME }} --file Dockerfile .
