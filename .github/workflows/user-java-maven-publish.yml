@@ -8,13 +8,13 @@ on:
     branches: [ 'main' ]
     paths:
       - "apis/user-java/**"
-      - ".github/**"
+      - ".github/workflows/user-java-maven-publish.yml"
 
   pull_request:
     branches: [ 'main' ]
     paths:
       - "apis/user-java/**"
-      - ".github/**"
+      - ".github/workflows/user-java-maven-publish.yml"
 
 jobs:
   build:
