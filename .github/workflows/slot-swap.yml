@@ -21,7 +21,8 @@ on:
 jobs:
   swap:
     runs-on: ubuntu-latest
-
+    environment:
+      name: ${{ inputs.targetslotname }}
     steps:
 
     - uses: Azure/login@v1

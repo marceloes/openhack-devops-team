@@ -24,6 +24,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.slotname }}
     env:
       ACRNAME: ${{ inputs.acrname }}
       IMAGE_NAME: "${{ inputs.imagename }}"
