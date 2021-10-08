@@ -28,7 +28,6 @@ jobs:
       ACRNAME: ${{ inputs.acrname }}
       IMAGE_NAME: "${{ inputs.imagename }}"
 
-#    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
 
     - uses: actions/checkout@v2
