@@ -18,9 +18,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-        run:
-          working-directory: apis/poi/web  
     env:
       ACRNAME: "openhack4ue1whv5acr"
 
@@ -38,6 +35,7 @@ jobs:
       with:
         # <Azure Container Registry URI>/<ACR_repository_name>:<Revision Number> where the ACR_repository_name follows the naming convention devopsoh/<image_name>:<tag>.
         inlineScript: |
+          cd apis/poi/web
           echo $PWD
           ls -a
           az acr build --image "devopsoh/api-poi:${{ github.run_number }}" --registry ${{ env.ACRNAME }}  .

@@ -9,20 +9,20 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestExecuteQueryInvalidDriverReturnsErr(t *testing.T) {
-	defer t.Cleanup(resetDataAccessEnvVars)
-	//arrange
-	InitLogging(os.Stdout, os.Stdout, os.Stdout)
-	os.Setenv("SQL_DRIVER", "not_a_real_driver")
-	RebindDataAccessEnvironmentVariables()
-	//act
-	var query = SelectAllTripsForUserQuery("someUser")
+// func TestExecuteQueryInvalidDriverReturnsErr(t *testing.T) {
+// 	defer t.Cleanup(resetDataAccessEnvVars)
+// 	//arrange
+// 	InitLogging(os.Stdout, os.Stdout, os.Stdout)
+// 	os.Setenv("SQL_DRIVER", "not_a_real_driver")
+// 	RebindDataAccessEnvironmentVariables()
+// 	//act
+// 	var query = SelectAllTripsForUserQuery("someUser")
 
-	_, err := ExecuteQuery(query)
+// 	_, err := ExecuteQuery(query)
 
-	//assert
-	assert.NotNil(t, err)
-}
+// 	//assert
+// 	assert.NotNil(t, err)
+// }
 func TestExecuteQueryConnectionSuccess(t *testing.T) {
 	//act
 	var query = SelectAllTripsForUserQuery("someUser")
@@ -45,34 +45,34 @@ func TestExecuteQueryInvalidSqlReturnsErr(t *testing.T) {
 	assert.NotNil(t, err)
 }
 
-func TestExecuteQueryInvalidServerReturnsErr(t *testing.T) {
-	defer t.Cleanup(resetDataAccessEnvVars)
+// func TestExecuteQueryInvalidServerReturnsErr(t *testing.T) {
+// 	defer t.Cleanup(resetDataAccessEnvVars)
 
-	//arrange
-	InitLogging(os.Stdout, os.Stdout, os.Stdout)
-	os.Setenv("SQL_SERVER", "not_a_real_driver")
-	RebindDataAccessEnvironmentVariables()
+// 	//arrange
+// 	InitLogging(os.Stdout, os.Stdout, os.Stdout)
+// 	os.Setenv("SQL_SERVER", "not_a_real_driver")
+// 	RebindDataAccessEnvironmentVariables()
 
-	//act
-	_, err := ExecuteQuery("SELECT TOP 1 ID FROM Trips")
+// 	//act
+// 	_, err := ExecuteQuery("SELECT TOP 1 ID FROM Trips")
 
-	//assert
-	assert.NotNil(t, err)
-}
+// 	//assert
+// 	assert.NotNil(t, err)
+// }
 
-func TestExecuteNonQueryInvalidDriverReturnsErr(t *testing.T) {
-	defer t.Cleanup(resetDataAccessEnvVars)
-	//arrange
-	InitLogging(os.Stdout, os.Stdout, os.Stdout)
-	os.Setenv("SQL_DRIVER", "not_a_real_driver")
-	RebindDataAccessEnvironmentVariables()
+// func TestExecuteNonQueryInvalidDriverReturnsErr(t *testing.T) {
+// 	defer t.Cleanup(resetDataAccessEnvVars)
+// 	//arrange
+// 	InitLogging(os.Stdout, os.Stdout, os.Stdout)
+// 	os.Setenv("SQL_DRIVER", "not_a_real_driver")
+// 	RebindDataAccessEnvironmentVariables()
 
-	//act
-	_, err := ExecuteNonQuery("fake non query sql")
+// 	//act
+// 	_, err := ExecuteNonQuery("fake non query sql")
 
-	//assert
-	assert.NotNil(t, err)
-}
+// 	//assert
+// 	assert.NotNil(t, err)
+// }
 
 func TestExecuteNonQueryConnectionSuccess(t *testing.T) {
 	//act
@@ -97,19 +97,19 @@ func TestExecuteNonQueryInvalidServerReturnsErr(t *testing.T) {
 	assert.NotNil(t, err)
 }
 
-func TestFirstOrDefaultInvalidDriverReturnsErr(t *testing.T) {
-	defer t.Cleanup(resetDataAccessEnvVars)
-	//arrange
-	InitLogging(os.Stdout, os.Stdout, os.Stdout)
-	os.Setenv("SQL_DRIVER", "not_a_real_driver")
-	RebindDataAccessEnvironmentVariables()
+// func TestFirstOrDefaultInvalidDriverReturnsErr(t *testing.T) {
+// 	defer t.Cleanup(resetDataAccessEnvVars)
+// 	//arrange
+// 	InitLogging(os.Stdout, os.Stdout, os.Stdout)
+// 	os.Setenv("SQL_DRIVER", "not_a_real_driver")
+// 	RebindDataAccessEnvironmentVariables()
 
-	//act
-	_, err := FirstOrDefault("fake non query sql")
+// 	//act
+// 	_, err := FirstOrDefault("fake non query sql")
 
-	//assert
-	assert.NotNil(t, err)
-}
+// 	//assert
+// 	assert.NotNil(t, err)
+// }
 
 func TestFirstOrDefaultConnectionSuccess(t *testing.T) {
 	//act
