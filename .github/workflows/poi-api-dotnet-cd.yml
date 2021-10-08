@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ACRNAME: "openhack4ue1whv5acr"
+    defaults:
+        run:
+          working-directory: apis/poi/web  
 
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
@@ -35,4 +38,4 @@ jobs:
       with:
         # <Azure Container Registry URI>/<ACR_repository_name>:<Revision Number> where the ACR_repository_name follows the naming convention devopsoh/<image_name>:<tag>.
         inlineScript:
-          az acr build --image "devopsoh/api-poi:${{ github.run_number }}" --registry ${{ env.ACRNAME }} -f apis/poi/web/Dockerfile .
+          az acr build --image "devopsoh/api-poi:${{ github.run_number }}" --registry ${{ env.ACRNAME }}  .
