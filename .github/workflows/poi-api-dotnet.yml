@@ -5,12 +5,12 @@ on:
     branches: [ main ]
     paths:
       - "apis/poi/**"
-      - ".github/workflow/poi-api-dotnet.yml"
+      - ".github/workflow/**"
   pull_request:
     branches: [ main ]
     paths:
       - "apis/poi/**"
-      - ".github/workflow/poi-api-dotnet.yml"
+      - ".github/workflow/**"
 
 jobs:
   build:
