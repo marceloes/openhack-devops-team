@@ -6,6 +6,14 @@ on:
       - "POI-API-CI"
     types:
       - "completed"
+  push:
+    branches: [ main ]
+    paths:
+      - ".github/workflows/poi-api-dotnet-cd.yml"
+  pull_request:
+    branches: [ main ]
+    paths:
+      - ".github/workflows/poi-api-dotnet-cd.yml"
 
 jobs:
   deploy:
