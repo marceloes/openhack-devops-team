@@ -18,8 +18,6 @@ on:
 jobs:
   staging-deploy:
   #    if: ${{ github.event.workflow_run.conclusion == 'success' }}  #123
-    environment:
-      name: staging
     uses: marceloes/openhack-devops-team/.github/workflows/deploy-container-webapp.yml@main
     with:
       filepath: "apis/poi/web"
@@ -32,8 +30,6 @@ jobs:
   
   production-deploy:
     needs: staging-deploy
-    environment:
-      name: production
     uses: marceloes/openhack-devops-team/.github/workflows/slot-swap.yml@main
     with:
       webappname: "openhack4ue1whv5poi"
