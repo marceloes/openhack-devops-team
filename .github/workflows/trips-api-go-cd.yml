@@ -17,7 +17,7 @@ on:
 
 jobs:
   deploy:
-    uses: marceloes/openhack-devops-team/.github/workflows/deploy-container-webapp.yml
+    uses: marceloes/openhack-devops-team/.github/workflows/deploy-container-webapp.yml@main
     with:
       filepath: "apis/trips"
       imagename: "devopsoh/api-trips"
