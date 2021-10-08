@@ -2,10 +2,10 @@ name: TRIPS-API-GO-CD
 
 on:
   workflow_run:
-    workflows:
-      - "POI-API-CI"
-    types:
-      - "completed"
+#    workflows:
+#      - "POI-API-CI"
+#    types:
+#      - "completed"
   push:
     branches: [ main ]
     paths:
@@ -17,7 +17,7 @@ on:
 
 jobs:  
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}  
+#    if: ${{ github.event.workflow_run.conclusion == 'success' }}  
     uses: marceloes/openhack-devops-team/.github/workflows/deploy-container-webapp.yml@main
     with:
       filepath: "apis/trips"

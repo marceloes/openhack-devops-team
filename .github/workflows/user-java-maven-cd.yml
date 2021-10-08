@@ -17,25 +17,38 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    env:
-      ACRNAME: "openhack4ue1whv5acr"
+#    if: ${{ github.event.workflow_run.conclusion == 'success' }}  
+    uses: marceloes/openhack-devops-team/.github/workflows/deploy-container-webapp.yml@main
+    with:
+      filepath: "apis/user-java"
+      imagename: "devopsoh/api-user-java"
+      acrname: "openhack4ue1whv5acr"
+      webappname: "openhack4ue1whv5userjava"
+      slotname: staging
+    secrets:
+      azurecreds: ${{ secrets.AZURE_CREDS }}
 
-#    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    steps:
 
-    - uses: actions/checkout@v2
+#   deploy:
+#     runs-on: ubuntu-latest
+#     env:
+#       ACRNAME: "openhack4ue1whv5acr"
 
-    - uses: Azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDS }}
+# #    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+#     steps:
 
-    - name: Azure ACR build image CLI Action
-      uses: Azure/cli@1.0.4
-      with:
-        # <Azure Container Registry URI>/<ACR_repository_name>:<Revision Number> where the ACR_repository_name follows the naming convention devopsoh/<image_name>:<tag>.
-        inlineScript: |
-          cd apis/user-java
-          echo $PWD
-          ls -a
-          az acr build --image "devopsoh/api-user-java:${{ github.run_number }}" --registry ${{ env.ACRNAME }}  .
+#     - uses: actions/checkout@v2
+
+#     - uses: Azure/login@v1
+#       with:
+#         creds: ${{ secrets.AZURE_CREDS }}
+
+#     - name: Azure ACR build image CLI Action
+#       uses: Azure/cli@1.0.4
+#       with:
+#         # <Azure Container Registry URI>/<ACR_repository_name>:<Revision Number> where the ACR_repository_name follows the naming convention devopsoh/<image_name>:<tag>.
+#         inlineScript: |
+#           cd apis/user-java
+#           echo $PWD
+#           ls -a
+#           az acr build --image "devopsoh/api-user-java:${{ github.run_number }}" --registry ${{ env.ACRNAME }}  .
