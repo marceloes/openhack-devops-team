@@ -33,7 +33,6 @@ jobs:
     uses: marceloes/openhack-devops-team/.github/workflows/slot-swap.yml@main
     with:
       webappname: "openhack4ue1whv5poi"
-      slotname: staging
       resourcegroup: openhack4ue1whv5rg
       sourceslotname: staging
       targetslotname: production
