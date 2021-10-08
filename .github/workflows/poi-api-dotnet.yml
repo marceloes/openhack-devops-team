@@ -20,7 +20,7 @@ jobs:
       matrix:
         dotnet-version: [ '3.1.x' ]
 
-    steps:
+    steps: #comment to trigger cd
     - uses: actions/checkout@v2
     
     - name: Setup dotnet core version ${{ matrix.dotnet-version }}
