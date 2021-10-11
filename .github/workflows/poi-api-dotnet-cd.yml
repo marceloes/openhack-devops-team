@@ -27,6 +27,8 @@ jobs:
       slotname: staging
     secrets:
       azurecreds: ${{ secrets.AZURE_CREDS }}
+      acrusername: ${{ secrets.ACR_USERNAME }}
+      acrpassword: ${{ secrets.ACR_PASSWORD }}
   
   production-deploy:
     needs: staging-deploy

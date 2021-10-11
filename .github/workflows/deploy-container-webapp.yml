@@ -21,6 +21,10 @@ on:
     secrets:
       azurecreds:
         required: true
+      acrusername:
+        required: true
+      acrpassword:
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
