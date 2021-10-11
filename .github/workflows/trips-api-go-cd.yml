@@ -16,8 +16,9 @@ on:
       - ".github/workflows/trips-api-go-cd.yml"
 
 jobs:  
-  deploy:
-#    if: ${{ github.event.workflow_run.conclusion == 'success' }}  
+
+  staging-deploy:
+  #    if: ${{ github.event.workflow_run.conclusion == 'success' }}  #123
     uses: marceloes/openhack-devops-team/.github/workflows/deploy-container-webapp.yml@main
     with:
       filepath: "apis/trips"
@@ -25,6 +26,17 @@ jobs:
       acrname: "openhack4ue1whv5acr"
       webappname: "openhack4ue1whv5trips"
       slotname: staging
+    secrets:
+      azurecreds: ${{ secrets.AZURE_CREDS }}
+  
+  production-deploy:
+    needs: staging-deploy
+    uses: marceloes/openhack-devops-team/.github/workflows/slot-swap.yml@main
+    with:
+      webappname: "openhack4ue1whv5trips"
+      resourcegroup: openhack4ue1whv5rg
+      sourceslotname: staging
+      targetslotname: production
     secrets:
       azurecreds: ${{ secrets.AZURE_CREDS }}
 

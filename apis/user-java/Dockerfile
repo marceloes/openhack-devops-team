@@ -15,10 +15,10 @@ EXPOSE 8080
 #    https://vsupalov.com/docker-build-pass-environment-variables/
 ARG build_version="user-java default"
 
-ENV SQL_USER="YourUserName" \
-SQL_PASSWORD="changeme" \
-SQL_SERVER="changeme.database.windows.net" \
-SQL_DBNAME="mydrivingDB" \
+ENV SQL_USER=$SQL_USER \
+SQL_PASSWORD=$SQL_PASSWORD \
+SQL_SERVER=$SQL_SERVER \
+SQL_DBNAME=$SQL_DBNAME \
 APP_VERSION=$build_version 
 
 # Add the application's jar to the container

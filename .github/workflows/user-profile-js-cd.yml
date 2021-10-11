@@ -16,8 +16,9 @@ on:
       - ".github/workflows/user-profile-js-cd.yml"
 
 jobs:
-  deploy:
-#    if: ${{ github.event.workflow_run.conclusion == 'success' }}  
+
+  staging-deploy:
+  #    if: ${{ github.event.workflow_run.conclusion == 'success' }}  #123
     uses: marceloes/openhack-devops-team/.github/workflows/deploy-container-webapp.yml@main
     with:
       filepath: "apis/userprofile"
@@ -27,28 +28,16 @@ jobs:
       slotname: staging
     secrets:
       azurecreds: ${{ secrets.AZURE_CREDS }}
+  
+  production-deploy:
+    needs: staging-deploy
+    uses: marceloes/openhack-devops-team/.github/workflows/slot-swap.yml@main
+    with:
+      webappname: "openhack4ue1whv5userprofile"
+      resourcegroup: openhack4ue1whv5rg
+      sourceslotname: staging
+      targetslotname: production
+    secrets:
+      azurecreds: ${{ secrets.AZURE_CREDS }}
 
-
-#   deploy:
-#     runs-on: ubuntu-latest
-#     env:
-#       ACRNAME: "openhack4ue1whv5acr"
-
-# #    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-#     steps:
-
-#     - uses: actions/checkout@v2
-
-#     - uses: Azure/login@v1
-#       with:
-#         creds: ${{ secrets.AZURE_CREDS }}
-
-#     - name: Azure ACR build image CLI Action
-#       uses: Azure/cli@1.0.4
-#       with:
-#         # <Azure Container Registry URI>/<ACR_repository_name>:<Revision Number> where the ACR_repository_name follows the naming convention devopsoh/<image_name>:<tag>.
-#         inlineScript: |
-#           cd apis/userprofile
-#           echo $PWD
-#           ls -a
-#           az acr build --image "devopsoh/api-userprofile:${{ github.run_number }}" --registry ${{ env.ACRNAME }}  .
+  
