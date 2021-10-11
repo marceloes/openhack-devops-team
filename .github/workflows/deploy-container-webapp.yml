@@ -52,17 +52,16 @@ jobs:
         login-server: ${{ inputs.acrname }}.azurecr.io # default is https://index.docker.io/v1/
 
     - name: Build Docker Image
+      env: 
+        SQLUSER: ${{ steps.getSecretAction.outputs.SQLUSER }} 
+        SQLPASSWORD: ${{ steps.getSecretAction.outputs.SQLPASSWORD }} 
+        SQLSERVER: ${{ steps.getSecretAction.outputs.SQLSERVER }} 
+        SQLDBNAME: ${{ steps.getSecretAction.outputs.SQLDBNAME }} 
       run: |
           cd ${{ inputs.filepath }}
           echo $PWD
           ls -a
           docker build . -t "${{ inputs.acrname }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}" -e 
-      with:
-        env: 
-          SQLUSER=${{ steps.getSecretAction.outputs.SQLUSER }} \
-          SQLPASSWORD=${{ steps.getSecretAction.outputs.SQLPASSWORD }} \
-          SQLSERVER=${{ steps.getSecretAction.outputs.SQLSERVER }} \
-          SQLDBNAME=${{ steps.getSecretAction.outputs.SQLDBNAME }} \
 
     - name: Push Docker Image
       run: |
