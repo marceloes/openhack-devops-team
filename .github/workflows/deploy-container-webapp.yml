@@ -18,9 +18,6 @@ on:
       slotname:
         required: true
         type: string
-      keyvaultname:
-        required: true
-        type: string
     secrets:
       azurecreds:
         required: true
