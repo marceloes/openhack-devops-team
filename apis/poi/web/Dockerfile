@@ -19,7 +19,11 @@ WORKDIR /app
 #    This can be specified during the docker build step by adding " --build-arg build_version=<value>"
 #    App version can be accessed via the uri path /api/version/poi
 #    https://vsupalov.com/docker-build-pass-environment-variables/
-ARG build_version="poi default"
+ARG build_version="poi default" \
+SQLUSER \
+SQLPASSWORD \
+SQLSERVER \
+SQLDBNAME 
 
 ENV SQL_USER=$SQLUSER \
 SQL_PASSWORD=$SQLPASSWORD \
@@ -31,6 +35,7 @@ ASPNETCORE_ENVIRONMENT="Production" \
 APP_VERSION=$build_version 
 
 RUN echo "User is $SQL_USER"
+RUN echo "External user is $SQLUSER"
 
 COPY --from=build-env /app/out .
 

@@ -64,7 +64,7 @@ jobs:
       run: |
           cd ${{ inputs.filepath }}
           env
-          docker build . -t "${{ inputs.acrname }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          docker build . -t "${{ inputs.acrname }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}" --build-arg SQLUSER --build-arg SQLPASSWORD --build-arg SQLSERVER --build-arg SQLDBNAME
 
     - name: Push Docker Image
       run: |
