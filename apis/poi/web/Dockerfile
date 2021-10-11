@@ -21,11 +21,11 @@ WORKDIR /app
 #    https://vsupalov.com/docker-build-pass-environment-variables/
 ARG build_version="poi default"
 
-ENV SQL_USER=$SQL_USER \
-SQL_PASSWORD=$SQL_PASSWORD \
-SQL_SERVER=$SQL_SERVER \
-SQL_DBNAME=$SQL_DBNAME \
-WEB_PORT="8080" \
+# ENV SQL_USER=$SQL_USER \
+# SQL_PASSWORD=$SQL_PASSWORD \
+# SQL_SERVER=$SQL_SERVER \
+# SQL_DBNAME=$SQL_DBNAME \
+ENV WEB_PORT="8080" \
 WEB_SERVER_BASE_URI="http://0.0.0.0" \
 ASPNETCORE_ENVIRONMENT="Production" \
 APP_VERSION=$build_version 
