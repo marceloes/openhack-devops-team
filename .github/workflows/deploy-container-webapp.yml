@@ -65,7 +65,7 @@ jobs:
           cd ${{ inputs.filepath }}
           echo $PWD
           ls -a
-          docker build . -t "${{ inputs.acrname }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}" -e 
+          docker build . -t "${{ inputs.acrname }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}"
 
     - name: Push Docker Image
       run: |
