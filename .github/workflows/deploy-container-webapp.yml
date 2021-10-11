@@ -63,13 +63,12 @@ jobs:
         SQLDBNAME: ${{ steps.getSecretAction.outputs.SQLDBNAME }} 
       run: |
           cd ${{ inputs.filepath }}
-          echo $PWD
-          ls -a
+          env
           docker build . -t "${{ inputs.acrname }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}"
 
     - name: Push Docker Image
       run: |
-          docker push "${{ inputs.acrname }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}""
+          docker push "${{ inputs.acrname }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}"
 
     # - name: Azure ACR build image CLI Action
     #   uses: Azure/cli@1.0.4
